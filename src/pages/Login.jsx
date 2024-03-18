@@ -48,7 +48,6 @@ const Login = () => {
                 }
             );
 
-            console.log(123);
             if (response.status !== 200) {
                 setLoggedIn(false);
                 setErrorUsername(true);
