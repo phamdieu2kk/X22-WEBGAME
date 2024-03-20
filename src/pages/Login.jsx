@@ -59,7 +59,7 @@ const Login = () => {
             sessionStorage.setItem("token", data.token);
             navigate("/");
         } catch (error) {
-            alert(error.response?.data);
+            alert(error.response?.data?.message ?? error.response?.data);
             setLoggedIn(false);
             setErrorUsername(true);
             setErrorPassword(true);
