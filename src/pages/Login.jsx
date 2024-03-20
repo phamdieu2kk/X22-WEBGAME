@@ -4,7 +4,7 @@ import FooterList from "../Components/FooterList";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import axios from "axios";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -18,8 +18,6 @@ const Login = () => {
         data: null,
         isLoading: false,
     });
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -57,7 +55,13 @@ const Login = () => {
 
             const data = response.data;
             sessionStorage.setItem("token", data.token);
-            navigate("/");
+            sessionStorage.setItem(
+                "user",
+                JSON.stringify({
+                    username: data.username,
+                })
+            );
+            window.location.href = "/";
         } catch (error) {
             alert(error.response?.data?.message ?? error.response?.data);
             setLoggedIn(false);
